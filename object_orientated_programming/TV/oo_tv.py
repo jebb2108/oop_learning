@@ -1,7 +1,7 @@
 """ Класс TV """
 
 class TV():
-    def __init__(self):
+    def __init__(self, brand, location):
         self.is_on = False
         self.is_muted = False
         # Некий список каналов по умолчанию
@@ -10,7 +10,10 @@ class TV():
         self.channel_index = 0
         self.volume_minimum = 0
         self.volume_maximum = 10
-        self.volume = self.volume_minimum // 2
+        self.volume = self.volume_maximum // 2
+        # Создает два обязательных аргумента для новых переменных экземпляра.
+        self.brand = brand
+        self.location = location
 
     def power(self):
         self.is_on = not self.is_on
@@ -59,7 +62,8 @@ class TV():
 
     def show_info(self):
         print()
-        print('TV Status:')
+        print('Status of TV:', self.brand)
+        print('Location:', self.location)
         if self.is_on:
             print('  TV is: On')
             print('  Channel is:', self.channel_list[self.channel_index])
