@@ -1,7 +1,8 @@
-class DimmerSwitch():
-    def __init__(self):
+class DimmerSwitch:
+    def __init__(self, label):
         self.switch_is_on = False
         self.brightness = 0
+        self.label = label
 
     def turn_on(self):
         self.switch_is_on = True
@@ -18,28 +19,7 @@ class DimmerSwitch():
             self.brightness -= 1
 
     def show(self):
+        print('Label:', self.label)
         print('Switch is on?', self.switch_is_on)
         print('Brightness is:', self.brightness)
-
-
-o_dimmer = DimmerSwitch()
-
-o_dimmer.turn_on()
-o_dimmer.raise_level()
-o_dimmer.raise_level()
-o_dimmer.raise_level()
-o_dimmer.raise_level()
-o_dimmer.raise_level()
-o_dimmer.show()
-
-o_dimmer.lower_level()
-o_dimmer.lower_level()
-
-o_dimmer.turn_off()
-o_dimmer.show()
-
-o_dimmer.turn_on()
-o_dimmer.raise_level()
-o_dimmer.raise_level()
-o_dimmer.raise_level()
-o_dimmer.show()
+        print()
