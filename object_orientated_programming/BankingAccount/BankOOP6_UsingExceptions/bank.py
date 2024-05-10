@@ -1,13 +1,38 @@
 """ Банк, управляющий словарем объектов Account """
 
-from account import Account
+from account import *
 
 
 class Bank():
 
-    def __init__(self):
+    def __init__(self, hours, address, phone):
         self.accounts_dict = {}
         self.next_account_number = 0
+        self.hours = hours
+        self.address = address
+        self.phone = phone
+
+    def ask_for_validation(self):
+        account_number = input('What is your account number? ')
+        try:
+            account_number = int(account_number)
+        except ValueError:
+            raise AbortTransaction('The account number must be '
+                                   'an integer')
+        if account_number not in self.accounts_dict:
+            raise AbortTransaction('There is no account ' + str(account_number))
+        return account_number
+
+    def ask_for_valid_password(self, o_account):
+        account_password = input('Enter the password: ')
+        o_account.check_password_match(account_password)
+        return o_account
+
+    def get_users_account(self):
+        account_number = self.ask_for_validation()
+        o_account = self.accounts_dict[account_number]
+        self.ask_for_valid_password(o_account)
+        return o_account
 
     def create_account(self, the_name: str, the_starting_balance: int, the_password: str) -> int | object:
         o_account = Account(the_name, the_starting_balance, the_password)
@@ -53,13 +78,11 @@ class Bank():
 
     def deposit(self):
         print('*** Deposit ***')
-        user_account_number = int(input('Please enter the account number: '))
-        user_deposit_amount = int(input('Please enter amount to deposit: '))
-        user_account_password = input('Enter the password: ')
-        o_account = self.accounts_dict[user_account_number]
-        the_balance = o_account.deposit(user_deposit_amount, user_account_password)
-        if the_balance is not None:
-            print('Your new balance is:', the_balance)
+        o_account = self.get_users_account()
+        user_deposit_amount = input('Please enter amount to deposit: ')
+        the_balance = o_account.deposit(user_deposit_amount)
+        print('Deposited:', user_deposit_amount)
+        print('Your new balance is:', the_balance)
 
     def show(self):
         print('*** Show ***')
@@ -69,11 +92,23 @@ class Bank():
 
     def withdraw(self):
         print('*** Withdrawal ***')
-        user_account_number = int(input('Please enter the account number: '))
-        user_withdrawal_amount = int(input('Please enter amount to deposit: '))
-        user_account_password = input('Enter the password: ')
-        o_account = self.accounts_dict[user_account_number]
-        the_balance = o_account.withdraw(user_withdrawal_amount, user_account_password)
-        if the_balance is not None:
-            print('Withdrew:', user_withdrawal_amount)
-            print('Your new balance is:', the_balance)
+        o_account = self.get_users_account()
+        user_withdrawal_amount = input('Please enter amount to deposit: ')
+        the_balance = o_account.withdraw(user_withdrawal_amount)
+        print('Withdrew:', user_withdrawal_amount)
+        print('Your new balance is:', the_balance)
+
+    def get_info(self):
+        print('Hours:', self.hours)
+        print('Address:', self.address)
+        print('Phone:', self.phone)
+
+    # Специальный метод только для администратора банка
+    def show(self):
+        print('*** Show ***')
+        print('This would typically require an admin password')
+        for user_account_number in self.accounts_dict:
+            o_account = self.accounts_dict[user_account_number]
+            print('Account:', user_account_number)
+            o_account.show()
+            print()
