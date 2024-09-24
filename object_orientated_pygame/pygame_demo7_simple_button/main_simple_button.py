@@ -23,9 +23,15 @@ clock = pygame.time.Clock()
 
 # 5 - Инициализируем переменные
 # создаем экземпляр SimpleButton
-o_button = SimpleButton(window, (150, 30),
-                        'images/buttonUp.png',
-                        'images/buttonDown.png')
+o_button_a = SimpleButton(window, (25, 30),
+                          'images/buttonAUp.png',
+                          'images/buttonADown.png')
+o_button_b = SimpleButton(window, (150, 30),
+                          'images/buttonBUp.png',
+                          'images/buttonBDown.png')
+o_button_c = SimpleButton(window, (275, 30),
+                          'images/buttonCUp.png',
+                          'images/buttonCDown.png')
 
 # 6 - Бесконечный цикл
 while True:
@@ -37,15 +43,22 @@ while True:
             sys.exit()
 
         # передаем событие кнопке
-        if o_button.handle_event(event):
-            print('User has clicked the button')
+        if o_button_a.handle_event(event):
+            print('User clicked button A')
+        if o_button_b.handle_event(event):
+            print('User clicked button B')
+        if o_button_c.handle_event(event):
+            print('User clicked button C')
+
     # 8 - Выполняем действия 'в рамках фрейма'
 
     # 9 - Очищаем окно
     window.fill(GRAY)
 
     # 10 - Рисуем все элементы окна
-    o_button.draw()
+    o_button_a.draw()
+    o_button_b.draw()
+    o_button_c.draw()
 
     # 11 - Обновляем окно
     pygame.display.update()
