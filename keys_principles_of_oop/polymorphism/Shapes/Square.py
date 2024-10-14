@@ -19,6 +19,14 @@ class Square():
         self.rect = pygame.Rect(self.x, self.y, self.widthAndHeight,
                                             self.widthAndHeight)
         self.shapeType = 'Square'
+
+    def __eq__(self, o_other_square):
+        if not isinstance(o_other_square, Square):
+            raise TypeError('Second object was not a Square')
+        if self.widthAndHeight == o_other_square.widthAndHeight:
+            return True  # сопоставимо
+        else:
+            return False  # не сопоставимо
         
     def clickedInside(self, mousePoint):
         clicked = self.rect.collidepoint(mousePoint)
