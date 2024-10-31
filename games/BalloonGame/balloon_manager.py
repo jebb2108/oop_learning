@@ -19,24 +19,25 @@ class BalloonMgr:
         self.balloon_list = []
         self.n_popped = 0
         self.n_missed = 0
+        self.score = 0
 
         for balloon_num in range(0, N_BALLOONS):
             random_balloon_class = random.choice((BalloonSmall,
                                                   BalloonMedium,
-                                                  BallonLarge))
+                                                  BalloonLarge))
             o_balloon = random_balloon_class(self.window, self.max_width, self.max_height,
                                              balloon_num)
             self.balloon_list.append(o_balloon)
 
     def handleEvent(self, event):
-        if not event.type == MOUSEBUTTONDOWN:
+        if event.type == MOUSEBUTTONDOWN:
             # Двигаемся "в обратном направлении", чтобы самый
             # верхний шар лопнул
-            for o_ballon in reversed(self.balloon_list):
-                was_hit, n_points = o_ballon.clicked_inside(event.pos)
+            for o_balloon in reversed(self.balloon_list):
+                was_hit, n_points = o_balloon.clicked_inside(event.pos)
                 if was_hit:
                     if n_points > 0:  # Удаляем этот шар
-                        self.balloon_list.remove(o_ballon)
+                        self.balloon_list.remove(o_balloon)
                         self.n_popped += 1
                         self.score += n_points
                     return  # не нужно проверять другие

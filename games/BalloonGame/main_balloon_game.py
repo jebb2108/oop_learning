@@ -61,11 +61,11 @@ while True:
     if playing:
         o_balloon_manager.update()
         n_popped = o_balloon_manager.get_count_popped()
-        n_missed = o_ballon_manager.get_count_missed()
+        n_missed = o_balloon_manager.get_count_missed()
 
-        o_status_display.setValue('Popped:' + str(n_popped) +
-                                  'Missed' + str(n_missed) +
-                                  'Out of' + str(N_BALLOONS))
+        o_status_display.setValue('Popped: ' + str(n_popped) +
+                                  ' Missed ' + str(n_missed) +
+                                  ' ut of ' + str(N_BALLOONS))
         if (n_popped + n_missed) == N_BALLOONS:
             playing = False
             o_start_button.enable()
