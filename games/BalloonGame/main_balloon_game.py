@@ -65,7 +65,7 @@ while True:
 
         o_status_display.setValue('Popped: ' + str(n_popped) +
                                   ' Missed ' + str(n_missed) +
-                                  ' ut of ' + str(N_BALLOONS))
+                                  ' out of ' + str(N_BALLOONS))
         if (n_popped + n_missed) == N_BALLOONS:
             playing = False
             o_start_button.enable()
