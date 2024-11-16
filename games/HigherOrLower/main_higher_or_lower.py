@@ -39,7 +39,7 @@ while True:
     # 7 - Проверяем наличие событий
     for event in pygame.event.get():
         if ((event.type == pygame.QUIT) or
-                ((event.type == pygame.KEYDOWN) and (event.type == pygame.K_ESCAPE) or
+                ((event.type == pygame.KEYDOWN) and (event.key == pygame.K_ESCAPE) or
                 quit_button.handleEvent(event))):
             pygame.quit()
             sys.exit()

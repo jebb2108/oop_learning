@@ -43,19 +43,19 @@ class Deck:
         self.deck_list.insert(0, o_card)
 
 
-# if __name__ == '__main__':
-#     # основной код для тестирования класса Deck
-#
-#     import pygame
-#
-#     # константы
-#     WINDOW_WIDTH = 100
-#     WINDOW_HEIGHT = 100
-#
-#     pygame.init()
-#     window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-#
-#     o_deck = Deck(window)
-#     for i in range(0, 53):
-#         o_card = o_deck.get_card()
-#         print('Name: ', o_card.get_name(), 'Value: ', o_card.get_value())
+if __name__ == '__main__':
+    # основной код для тестирования класса Deck
+
+    import pygame
+
+    # константы
+    WINDOW_WIDTH = 100
+    WINDOW_HEIGHT = 100
+
+    pygame.init()
+    window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+
+    o_deck = Deck(window)
+    for i in range(0, 53):
+        o_card = o_deck.get_card()
+        print('Name: ', o_card.get_name(), 'Value: ', o_card.get_value())
