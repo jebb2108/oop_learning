@@ -32,7 +32,6 @@ class SimpleAnimation:
         # сколько времени прошло с момента начала демонстрации этого
         # изображения
         self.elapsed = time.time() - self.image_start_time
-        print(self.elapsed)
 
         # если прошло достаточно времени, переходим к следующему
         # изображению
